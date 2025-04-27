@@ -19,4 +19,4 @@ jobs:
           - name: list files
             run: ls         
           - name: Build
-            run: dotnet build /home/devbox/dotnet/nopCommerce-apr25/src/Presentation/Nop.Web/Nop.Web.csproj
+            run: dotnet build src/Presentation/Nop.Web/Nop.Web.csproj
