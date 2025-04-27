@@ -10,6 +10,5 @@ jobs:
         runs-on: ubuntu-24.04
         steps:
             - uses: action/chekcout@develop
-            - name: Maven Clean Packege
+            - name: Maven Clean Package
               run: mvn clean package
-              
