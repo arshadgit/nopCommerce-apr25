@@ -15,7 +15,8 @@ jobs:
             with:
               dotnet-version: '9'
         #   - name: Restore dependencies
-        #     run: dotnet restore
-          
+        #     run: dotnet restore 
+          - name: list files
+            run: ls         
           - name: Build
             run: dotnet build /home/devbox/dotnet/nopCommerce-apr25/src/Presentation/Nop.Web/Nop.Web.csproj
