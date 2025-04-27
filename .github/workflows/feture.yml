@@ -16,6 +16,6 @@ jobs:
               dotnet-version: '9'
         #   - name: Restore dependencies
         #     run: dotnet restore
-
+          
           - name: Build
-            run: dotnet build **/Nop.Web.csproj
+            run: dotnet build **/src/Presentation/Nop.Web/Nop.Web.csproj
