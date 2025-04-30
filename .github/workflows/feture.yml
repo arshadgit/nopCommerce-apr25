@@ -43,6 +43,7 @@ jobs:
             # Put your action repo here
             uses: bettermarks/action-artifact-download
             with:
+              repo: arshadgit/nopCommerce-apr25.git
               artifact_name: "${{ github.sha }}"
               token: "${{ secrets.GITHUB_TOKEN }}"
               rename: foobar
