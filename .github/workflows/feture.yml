@@ -21,10 +21,33 @@ jobs:
           - name: Build
             run: dotnet build src/Presentation/Nop.Web/Nop.Web.csproj
             
-          - uses: actions/checkout@master
-          - name: Download artifact from build
-            uses: bettermarks/action-artifact-download@0.3.0
+          # - uses: actions/checkout@master
+          # - name: Download artifact from build
+          #   uses: bettermarks/action-artifact-download@0.3.0
+          #   with:
+          #     repo: arshadgit/nopCommerce-apr25.git
+          #     token: ${{ secrets.GITHUB_TOKEN }}
+          #     artifact_name: nop-artifact
+
+          - name: Wait for artifact to succeed
+            uses: fountainhead/action-wait-for-check@v1.0.0
+            id: wait-for-build
             with:
-              repo: arshadgit/nopCommerce-apr25.git
-              token: ${{ secrets.GITHUB_TOKEN }}
-              artifact_name: nop-artifact
+              token: "${{ secrets.GITHUB_TOKEN }}"
+              checkName: artifact
+
+          - uses: actions/checkout@master
+          - name: Self test
+            id: selftest
+
+            # Put your action repo here
+            uses: bettermarks/action-artifact-download
+            with:
+              artifact_name: "${{ github.sha }}"
+              token: "${{ secrets.GITHUB_TOKEN }}"
+              rename: foobar
+
+          - name: Check outputs
+            run: |
+              test "${{ steps.selftest.outputs.success }}" == "Artifact downloaded: ${{ github.sha }}"
+              test -f foobar
